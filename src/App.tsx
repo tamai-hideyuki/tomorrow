@@ -1,3 +1,4 @@
+import React from 'react';
 import { useMemos } from './useMemos';
 import MemoList from './components/MemoList';
 import MemoEditor from './components/MemoEditor';
