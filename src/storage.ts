@@ -4,7 +4,6 @@ let directoryHandle: FileSystemDirectoryHandle | null = null;
 
 export async function selectDirectory(): Promise<FileSystemDirectoryHandle | null> {
   try {
-    // @ts-ignore - File System Access APIの型定義
     const handle = await window.showDirectoryPicker();
     directoryHandle = handle;
 
