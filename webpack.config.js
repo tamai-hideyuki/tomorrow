@@ -1,27 +1,40 @@
 module.exports = {
-    // ビルドした際の出力先
-    output: {
-      path: `${__dirname}/dist`,
-      filename: "bundle.js",
+  entry: './src/index.tsx',
+  output: {
+    path: `${__dirname}/dist`,
+    filename: 'bundle.js',
+  },
+  mode: 'development',
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js', '.jsx'],
+  },
+  devServer: {
+    static: {
+      directory: `${__dirname}/dist`,
     },
-    // モード指定（development,production）
-    mode: "development",
-    // import時のパス指定で拡張子を省略する
-    resolve: {
-      extensions: [".ts", ".js"],
-    },
-    // 開発用サーバで起動するパス
-    devServer: {
-      static: {
-        directory: `${__dirname}/dist`,
-      },
-    },
-    module: {
-      rules: [
-        {
-          test: /\.ts$/,
-          loader: "ts-loader",
+    hot: true,
+    port: 3000,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react',
+              '@babel/preset-typescript',
+            ],
+          },
         },
-      ],
-    },
-  };
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+};

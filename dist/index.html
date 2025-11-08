@@ -7,35 +7,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="flex-row h-screen w-full">
-      <!-- 左側のコンテンツ -->
-      <div class="flex-col flex-between w-240 border-r">
-        <div class="flex-col flex-start">
-          <h1 hidden>メモアプリ</h1>
-          <h2 class="text-lg">メモ一覧</h2>
-          <div id="list" class="text-md flex-col gap-md w-full">
-            <div class="p-sm active">memo1</div>
-            <div class="p-sm">memo2</div>
-          </div>
-        </div>
-        <div class="flex-col flex-center w-full p-lg">
-          <button type="button" id="add">追加</button>
-        </div>
-      </div>
-      <!-- 右側のコンテンツ -->
-      <div class="flex-col w-full">
-        <div class="flex-col h-full p-md">
-          <input type="text" id="memoTitle" class="text-md p-md" disabled />
-          <textarea id="memoBody" class="h-full text-md p-md" disabled></textarea>
-        </div>
-        <div class="flex-row flex-end gap-lg p-lg">
-          <button type="button" id="edit">編集</button>
-          <button type="button" id="save">保存</button>
-          <button type="button" id="delete">削除</button>
-        </div>
-      </div>
-    </div>
-
+    <div id="root"></div>
     <script type="module" src="bundle.js" defer></script>
   </body>
 </html>
