@@ -9,6 +9,19 @@ interface MemoEditorProps {
   onDeleteMemo: () => void;
 }
 
+// タイムスタンプを日本時間の文字列に変換
+const formatJapaneseDateTime = (timestamp: number): string => {
+  const date = new Date(timestamp);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+
+  return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+};
+
 const MemoEditor: React.FC<MemoEditorProps> = ({
   memo,
   isEditMode,
@@ -46,6 +59,10 @@ const MemoEditor: React.FC<MemoEditorProps> = ({
           onChange={(e) => setTitle(e.target.value)}
           disabled={!isEditMode}
         />
+        <div className="flex-row gap-lg p-sm" style={{ fontSize: '0.85rem', color: '#666' }}>
+          <span>作成: {formatJapaneseDateTime(memo.createdAt)}</span>
+          <span>更新: {formatJapaneseDateTime(memo.updatedAt)}</span>
+        </div>
         <textarea
           className="h-full text-md p-md"
           value={body}
