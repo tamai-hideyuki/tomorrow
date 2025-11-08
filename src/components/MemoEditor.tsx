@@ -9,7 +9,6 @@ interface MemoEditorProps {
   onDeleteMemo: () => void;
 }
 
-// タイムスタンプを日本時間の文字列に変換
 const formatJapaneseDateTime = (timestamp: number): string => {
   const date = new Date(timestamp);
   const year = date.getFullYear();
@@ -32,7 +31,6 @@ const MemoEditor: React.FC<MemoEditorProps> = ({
   const [title, setTitle] = useState(memo.title);
   const [body, setBody] = useState(memo.body);
 
-  // メモが変更されたら入力値を更新
   useEffect(() => {
     setTitle(memo.title);
     setBody(memo.body);
