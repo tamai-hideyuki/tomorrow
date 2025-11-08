@@ -54,7 +54,6 @@ createdAt: ${memo.createdAt}
 updatedAt: ${memo.updatedAt}
 order: ${memo.order}
 ---
-
 ${memo.body}`;
 
   await writable.write(content);
