@@ -8,7 +8,6 @@ import {
   migrateFromLocalStorage as migrateFromLocalStorageFS,
 } from './storage';
 
-//export interface MemoRepository {
 export type MemoRepository = {
   ensureDirectory(): Promise<boolean>;
   requestDirectory(): Promise<boolean>;
