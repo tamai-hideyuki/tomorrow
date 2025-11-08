@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Memo } from '../types';
 
-interface MemoEditorProps {
+//interface MemoEditorProps {
+type MemoEditorProps = {
   memo: Memo;
   isEditMode: boolean;
   onToggleEditMode: () => void;
   onUpdateMemo: (title: string, body: string) => void;
   onDeleteMemo: () => void;
-}
+};
 
 const formatJapaneseDateTime = (timestamp: number): string => {
   const date = new Date(timestamp);

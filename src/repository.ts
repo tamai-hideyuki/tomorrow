@@ -8,7 +8,8 @@ import {
   migrateFromLocalStorage as migrateFromLocalStorageFS,
 } from './storage';
 
-export interface MemoRepository {
+//export interface MemoRepository {
+export type MemoRepository = {
   ensureDirectory(): Promise<boolean>;
   requestDirectory(): Promise<boolean>;
 
@@ -17,7 +18,7 @@ export interface MemoRepository {
   deleteOne(memoId: string): Promise<void>;
 
   migrateFromLegacyStorage(): Promise<Memo[]>;
-}
+};
 
 export class FileSystemMemoRepository implements MemoRepository {
   async ensureDirectory(): Promise<boolean> {

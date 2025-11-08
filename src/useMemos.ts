@@ -4,7 +4,9 @@ import { memoRepository } from './repository';
 import { applyMigrations, createNewMemo, createInitialMemos } from './migration';
 
 export type AppStatus = 'loading' | 'needDirectory' | 'ready';
-export interface UseMemosReturn {
+
+//export interface UseMemosReturn {
+export type UseMemosReturn = {
   memos: Memo[];
   selectedMemoId: string | undefined;
   isEditMode: boolean;
@@ -17,7 +19,7 @@ export interface UseMemosReturn {
   deleteMemo: (memoId: string) => Promise<void>;
   reorderMemos: (dragIndex: number, dropIndex: number) => void;
   toggleEditMode: () => void;
-}
+};
 
 export function useMemos(): UseMemosReturn {
   const [memos, setMemos] = useState<Memo[]>([]);

@@ -2,13 +2,14 @@ import React from 'react';
 import { Memo } from '../types';
 import MemoItem from './MemoItem';
 
-interface MemoListProps {
+//interface MemoListProps {
+type MemoListProps = {
   memos: Memo[];
   selectedIndex: number;
   onSelectMemo: (index: number) => void;
   onAddMemo: () => void;
   onReorder: (dragIndex: number, dropIndex: number) => void;
-}
+};
 
 const MemoList: React.FC<MemoListProps> = ({
   memos,

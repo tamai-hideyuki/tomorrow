@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Memo } from '../types';
 
-interface MemoItemProps {
+//interface MemoItemProps {
+type MemoItemProps = {
   memo: Memo;
   index: number;
   isActive: boolean;
   onSelect: () => void;
   onReorder: (dragIndex: number, dropIndex: number) => void;
-}
+};
 
 const MemoItem: React.FC<MemoItemProps> = ({ memo, index, isActive, onSelect, onReorder }) => {
   const [isDragging, setIsDragging] = useState(false);
