@@ -154,44 +154,45 @@ export function useMemos(): UseMemosReturn {
   const updateMemo = useCallback((memoId: string, title: string, body: string) => {
     setMemos((prevMemos) =>
       prevMemos.map((memo) =>
-        memo.id === memoId
-          ? { ...memo, title, body, updatedAt: Date.now() }
-          : memo
+        memo.id === memoId ? { ...memo, title, body, updatedAt: Date.now() } : memo
       )
     );
   }, []);
 
   // メモ削除アクション
-  const deleteMemo = useCallback(async (memoId: string) => {
-    if (memos.length === 1) {
-      alert('これ以上削除できません。');
-      return;
-    }
+  const deleteMemo = useCallback(
+    async (memoId: string) => {
+      if (memos.length === 1) {
+        alert('これ以上削除できません。');
+        return;
+      }
 
-    // L4: ファイル削除
-    try {
-      await memoRepository.deleteOne(memoId);
-    } catch (error) {
-      console.error('ファイル削除エラー:', error);
-      alert('ファイルの削除に失敗しました');
-      return;
-    }
+      // L4: ファイル削除
+      try {
+        await memoRepository.deleteOne(memoId);
+      } catch (error) {
+        console.error('ファイル削除エラー:', error);
+        alert('ファイルの削除に失敗しました');
+        return;
+      }
 
-    // 削除後のメモリストを再構築
-    const newMemos = memos.filter((memo) => memo.id !== memoId);
-    newMemos.forEach((memo, index) => {
-      memo.order = index;
-    });
+      // 削除後のメモリストを再構築
+      const newMemos = memos.filter((memo) => memo.id !== memoId);
+      newMemos.forEach((memo, index) => {
+        memo.order = index;
+      });
 
-    // 選択中のメモを調整
-    const deletedIndex = memos.findIndex((m) => m.id === memoId);
-    const newSelectedIndex = Math.max(0, deletedIndex - 1);
-    const newSelectedId = newMemos[newSelectedIndex]?.id;
+      // 選択中のメモを調整
+      const deletedIndex = memos.findIndex((m) => m.id === memoId);
+      const newSelectedIndex = Math.max(0, deletedIndex - 1);
+      const newSelectedId = newMemos[newSelectedIndex]?.id;
 
-    setMemos(newMemos);
-    setSelectedMemoId(newSelectedId);
-    setIsEditMode(false);
-  }, [memos]);
+      setMemos(newMemos);
+      setSelectedMemoId(newSelectedId);
+      setIsEditMode(false);
+    },
+    [memos]
+  );
 
   // メモ並び替えアクション
   const reorderMemos = useCallback((dragIndex: number, dropIndex: number) => {

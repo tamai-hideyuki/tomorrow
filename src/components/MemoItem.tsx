@@ -9,13 +9,7 @@ interface MemoItemProps {
   onReorder: (dragIndex: number, dropIndex: number) => void;
 }
 
-const MemoItem: React.FC<MemoItemProps> = ({
-  memo,
-  index,
-  isActive,
-  onSelect,
-  onReorder,
-}) => {
+const MemoItem: React.FC<MemoItemProps> = ({ memo, index, isActive, onSelect, onReorder }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [isDragOver, setIsDragOver] = useState(false);
 

@@ -1,4 +1,4 @@
-import { Memo } from "./types";
+import { Memo } from './types';
 
 // ファイルシステムのハンドルを保存（セッション間で保持するため）
 let directoryHandle: FileSystemDirectoryHandle | null = null;
@@ -79,7 +79,7 @@ export async function loadMemosFromDirectory(): Promise<Memo[]> {
   }
 
   const memos: Memo[] = [];
-  
+
   // フォルダ内の全ファイルを取得
   // FileSystemDirectoryHandleはAsyncIterableとして実装されている
   try {
@@ -147,23 +147,17 @@ function parseMarkdownFile(content: string, fileName: string): Memo | null {
 
 // YAMLのエスケープ処理
 function escapeYaml(str: string): string {
-  return str
-    .replace(/\\/g, '\\\\')
-    .replace(/"/g, '\\"')
-    .replace(/\n/g, '\\n');
+  return str.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n');
 }
 
 // YAMLのアンエスケープ処理
 function unescapeYaml(str: string): string {
-  return str
-    .replace(/\\n/g, '\n')
-    .replace(/\\"/g, '"')
-    .replace(/\\\\/g, '\\');
+  return str.replace(/\\n/g, '\n').replace(/\\"/g, '"').replace(/\\\\/g, '\\');
 }
 
 // 後方互換性のため、localStorageから移行する関数
 export async function migrateFromLocalStorage(): Promise<Memo[]> {
-  const STORAGE_KEY = "memos";
+  const STORAGE_KEY = 'memos';
   const data = localStorage.getItem(STORAGE_KEY);
   if (data === null) {
     return [];
