@@ -1,4 +1,3 @@
-//学習用メモPR
 import { useState, useEffect, useCallback } from 'react';
 import { Memo } from './types';
 import { memoRepository } from './repository';
