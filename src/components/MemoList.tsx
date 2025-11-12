@@ -2,7 +2,6 @@ import React from 'react';
 import { Memo } from '../types';
 import MemoItem from './MemoItem';
 
-//interface MemoListProps {
 type MemoListProps = {
   memos: Memo[];
   selectedIndex: number;

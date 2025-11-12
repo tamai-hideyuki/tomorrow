@@ -20,7 +20,9 @@ import type { Memo } from '../../types';
 type MemoListItemProps = Readonly<{
   memo: Memo;
   active: boolean;
+  index: number;
   onSelect: () => void;
+  onReorder: (fromIndex: number, toIndex: number) => void;
 }>;
 
 const MemoListItemBase: React.FC<MemoListItemProps> = ({ memo, active, onSelect }) => {
@@ -49,7 +51,11 @@ const MemoListItemBase: React.FC<MemoListItemProps> = ({ memo, active, onSelect 
 
 // memo: 再レンダリング抑制（active/title が同じなら再描画しない）
 const MemoListItem = React.memo(MemoListItemBase, (prev, next) => {
-  return prev.active === next.active && (prev.memo.title || '') === (next.memo.title || '');
+  return (
+    prev.active === next.active &&
+    prev.index === next.index &&
+    (prev.memo.title || '') === (next.memo.title || '')
+  );
 });
 
 export default MemoListItem;

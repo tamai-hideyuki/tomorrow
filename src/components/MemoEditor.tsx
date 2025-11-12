@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Memo } from '../types';
 
-//interface MemoEditorProps {
 type MemoEditorProps = {
   memo: Memo;
   isEditMode: boolean;

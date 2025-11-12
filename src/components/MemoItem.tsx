@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Memo } from '../types';
 
-//interface MemoItemProps {
 type MemoItemProps = {
   memo: Memo;
   index: number;

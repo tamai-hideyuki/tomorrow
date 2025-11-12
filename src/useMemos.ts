@@ -5,7 +5,6 @@ import { applyMigrations, createNewMemo, createInitialMemos } from './migration'
 
 export type AppStatus = 'loading' | 'needDirectory' | 'ready';
 
-//export interface UseMemosReturn {
 export type UseMemosReturn = {
   memos: Memo[];
   selectedMemoId: string | undefined;
