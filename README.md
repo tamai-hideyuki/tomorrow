@@ -6,3 +6,7 @@
 - フロントエンドのみ: Reactベースのシングルページアプリケーション
 - データの保存: File System Access APIを使って、ユーザーのローカルディレクトリにMarkdownファイルとして直接保存
 - バックエンド不要: サーバーサイドの処理は一切なく、ブラウザのAPIを使ってファイルシステムに直接アクセス
+
+- パッケージ
+- import { toast } from "sonner";
+- import { useDebouncedCallback } from 'use-debounce';
