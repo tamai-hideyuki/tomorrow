@@ -18,6 +18,8 @@ const App: React.FC = () => {
     toggleEditMode,
   } = useMemos();
 
+  //問題: selectedMemo と selectedIndex が毎レンダリングで再計算
+  //影響: 不要な再レンダリング
   const selectedMemo = memos.find((memo) => memo.id === selectedMemoId);
   const selectedIndex = memos.findIndex((memo) => memo.id === selectedMemoId);
 

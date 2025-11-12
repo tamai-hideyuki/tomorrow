@@ -71,12 +71,18 @@ export function useMemos(): UseMemosReturn {
 
       setMemos(loadedMemos);
       setSelectedMemoId(loadedMemos[0]?.id);
+      //問題: alert() の使用、サイレントエラー
+      //影響: UXの低下、エラーの見逃し
+      //改善案: エラー状態管理、トースト通知の実装
     } catch (error) {
       console.error('メモ読み込みエラー:', error);
       alert('メモの読み込みに失敗しました');
     }
   };
 
+  //問題: memosが変更されるたびに全メモを保存
+  //影響: ファイルシステムへの大量書き込み、パフォーマンス低下
+  //改善案: デバウンス処理、差分保存の実装
   useEffect(() => {
     if (memos.length > 0 && status === 'ready') {
       saveAllMemos();
@@ -94,6 +100,8 @@ export function useMemos(): UseMemosReturn {
     }
   };
 
+  //問題: 依存配列に loadMemos が含まれていない
+  //影響: ESLintルール違反、潜在的なバグ
   const selectDirectory = useCallback(async () => {
     const success = await memoRepository.requestDirectory();
     if (success) {
@@ -145,7 +153,8 @@ export function useMemos(): UseMemosReturn {
 
       const newMemos = memos.filter((memo) => memo.id !== memoId);
       newMemos.forEach((memo, index) => {
-        memo.order = index;
+        memo.order = index; //直接 MEMO オブジェクトを変更しているのが問題
+        //新しいオブジェクトを生成するようにする
       });
 
       const deletedIndex = memos.findIndex((m) => m.id === memoId);
@@ -166,7 +175,8 @@ export function useMemos(): UseMemosReturn {
       reordered.splice(dropIndex, 0, draggedMemo);
 
       reordered.forEach((memo, index) => {
-        memo.order = index;
+        memo.order = index; //直接 MEMO オブジェクトを変更しているのが問題
+        //新しいオブジェクトを生成するようにする
       });
 
       return reordered;

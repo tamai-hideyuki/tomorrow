@@ -15,6 +15,8 @@ const MemoList: React.FC<MemoListProps> = ({ memos, selectedId, onSelect, onReor
       {memos.length === 0 ? (
         <div className="text-sm text-gray-500 px-3 py-2">メモがありません</div>
       ) : (
+        //問題: m, idx など省略されすぎた変数名
+        //影響: 可読性の低下
         memos.map((m, idx) => (
           <MemoListItem
             key={m.id}

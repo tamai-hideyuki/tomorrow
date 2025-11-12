@@ -1,3 +1,6 @@
+//問題: Atomic Designパターンの新版と重複
+//影響: コードの混乱、保守性の低下
+
 import React from 'react';
 import { Memo } from '../types';
 import MemoItem from './MemoItem';

@@ -9,6 +9,9 @@ type MemoEditorProps = {
   onDeleteMemo: () => void;
 };
 
+//問題: 日付フォーマット関数がコンポーネント内に存在
+//影響: 再利用性の低下、テストの困難さ
+//改善案: src/utils/dateFormatter.ts の作成
 const formatJapaneseDateTime = (timestamp: number): string => {
   const date = new Date(timestamp);
   const year = date.getFullYear();

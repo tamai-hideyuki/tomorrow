@@ -17,6 +17,8 @@ export async function selectDirectory(): Promise<FileSystemDirectoryHandle | nul
   }
 }
 
+//問題: saveDirectoryHandle が使用されていない
+//影響: デッドコード
 async function saveDirectoryHandle(handle: FileSystemDirectoryHandle) {
   localStorage.setItem('memo-directory-name', handle.name);
 }
@@ -68,7 +70,8 @@ export async function loadMemosFromDirectory(): Promise<Memo[]> {
   }
 
   const memos: Memo[] = [];
-
+  //問題: as any as AsyncIterable で型安全性を損なっている
+  //影響: 型チェックが機能せず、実行時エラーのリスク
   try {
     for await (const [name, entry] of handle as any as AsyncIterable<[string, FileSystemHandle]>) {
       if (entry.kind === 'file' && name.endsWith('.md')) {
@@ -80,6 +83,9 @@ export async function loadMemosFromDirectory(): Promise<Memo[]> {
           if (memo) {
             memos.push(memo);
           }
+          //問題: alert() の使用、サイレントエラー
+          //影響: UXの低下、エラーの見逃し
+          //改善案: エラー状態管理、トースト通知の実装
         } catch (error) {
           console.error(`ファイル読み込みエラー: ${name}`, error);
         }
