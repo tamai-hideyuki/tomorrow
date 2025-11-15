@@ -36,5 +36,7 @@
 
   // TypeScriptの設定
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "vscode-pets.theme": "forest",
+  "vscode-pets.petType": "totoro"
 }
