@@ -1,3 +1,18 @@
+// 既存のListItemへ統合し、アクセシビリティ・キーボード操作・DnDの「前後」ドロップを追加します。
+
+// Atomic Designの新版と重複しているので、
+// このMemoItemは「薄いラッパ」に整理し、
+// 既存のatoms/ListItemの機能（role=“option”、roving tabindex、キーボード選択など）を活用します。
+// さらに、ドラッグ＆ドロップは「上半分で前に、下半分で後ろに」挿入できるようにして、視覚的なガイドを追加します。
+// これで保守が単一箇所に集約され、UI/操作性も向上
+
+// ポイント
+// - 重複解消: atoms/ListItemを活用してロールやフォーカス制御を一元化し、MemoItemは表示とDnDロジックに集中させました。
+// - DnDの挙動向上: 行の上半分なら「前」、下半分なら「後」に挿入。境界線で視覚的フィードバックを表示します。末尾へ落とす場合は親コンテナ側のドロップ補助（既出のMemoList拡張）とも整合します。
+// - キーボード操作: Enter/Spaceで選択、Ctrl/Cmd+Arrowで並び替え。ロービングtabindexの移動は親のonFocusItemに委譲可能。
+// - アクセシビリティ: role=“option”やaria-selectedはListItem側で付与される前提。aria-labelで項目名を明示。
+// - パフォーマンス: React.memoで差分がある行のみ再描画。短い比較関数でtitle/updatedAt/id/active/indexを監視。
+
 //問題: Atomic Designパターンの新版と重複
 //影響: コードの混乱、保守性の低下
 

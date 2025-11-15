@@ -1,3 +1,17 @@
+// 短い計画
+// 1. 変数名の可読性改善（memo, indexへ変更）と型の明確化
+// 2. キーボード操作・ロービングタブインデックス対応（上下移動、Home/End、Enter/Spaceで選択）
+// 3. 並び替えのドラッグ＆ドロップ補助（HTML5 DnDの最低限のサポート）
+// 4. スクロール追従と初期フォーカス（選択変更時にスクロール・フォーカス）
+// 5. 空状態のアクセシビリティ向上（roleとaria-live）
+
+// ポイント
+// - 変数名の可読性改善: `m, idx`ではなく`memo, index`に統一。
+// - キーボード操作: コンテナで上下/Home/Endをハンドリングし、選択IDを更新。各項目は`ListItem`側のroving tabindexと組み合わせて自然にフォーカスが移動します。
+// - フォーカスとスクロール: `selectedId`が変わったら該当行へ`.focus()`と`scrollIntoView({ block: 'nearest' })`。
+// - DnD補助: 子（MemoListItem）のドラッグ開始・ドロップに加え、コンテナの空白へ落とした場合は末尾へ移動。高度な並び替えが必要なら dnd-kit などに差し替え可能。
+// - 空状態アクセシビリティ: `role="status"` + `aria-live="polite"`で状態更新を読み上げ。
+
 import React from 'react';
 import type { Memo } from '../../types';
 import MemoListItem from '../molecules/MemoListItem';

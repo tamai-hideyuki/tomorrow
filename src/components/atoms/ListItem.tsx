@@ -1,3 +1,7 @@
+//アクセシビリティ強化・キーボード操作対応・拡張API（slots/disabled/forwardRef）
+
+//見た目はそのままに、Listbox用のARIAと操作性を高め、拡張しやすいAPIにすると便利。
+
 import React from 'react';
 import clsx from 'clsx';
 

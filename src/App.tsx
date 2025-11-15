@@ -1,3 +1,7 @@
+// 選択メモの算出をuseMemo化し、ID中心のハンドラをuseCallbackで安定化します。
+// React公式の設計方針に寄せつつ便利にしたリファクタを行う
+// 派生値（selectedMemo / selectedIndex）をメモ化し、IDベースのハンドラを安定化、ショートカットと開発時のProfilerも追加
+
 import React from 'react';
 import { useMemos } from './useMemos';
 import MemoList from './components/MemoList';

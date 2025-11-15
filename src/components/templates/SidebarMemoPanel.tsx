@@ -1,3 +1,5 @@
+//幅のリサイズ・ショートカット・アクセシビリティ強化・空状態改善を加える
+
 import React from 'react';
 import Heading from '../atoms/Heading';
 import Button from '../atoms/Button';

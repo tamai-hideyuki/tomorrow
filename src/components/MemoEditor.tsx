@@ -1,3 +1,16 @@
+// 1. 日付フォーマットをユーティリティへ分離（src/utils/dateFormatter.ts）
+// 2. フォームの制御とアクセシビリティ改善（label, aria-describedby, type=“button”）
+// 3. 編集モードのUX改善（Enterで保存、Escでキャンセル、変更有無判定、保存ボタンのdisabled制御）
+// 4. コンポーネントの責務分離（ヘッダー/メタ情報/アクションバーを小さなサブコンポーネントに）
+// 5. 型と再レンダリングの最適化（React.memo、useCallback、useEffectの依存修正）
+
+// 主な改善点
+// - 再利用性: 日付フォーマットをユーティリティへ分離し、他コンポーネントでも使えるようにしました。テストも単体で容易です。
+// - アクセシビリティ: 入力にlabelを付与、メタ情報をaria-describedbyで関連付け。ボタンはtype=“button”明示、状態に応じてaria-disabledを反映。
+// - UX: Cmd/Ctrl+Enterで保存、Escでキャンセル。変更が無ければ保存ボタン無効化。キャンセルでフォーム値を元に戻す。
+// - パフォーマンス: React.memoで不必要な再レンダリングを抑制。useCallbackでハンドラの再生成を抑え、useEffectの依存をmemoのフィールド粒度に調整。
+// - コード構造: MetaRowとActionBarを分離して読みやすく。クラス名は一貫した命名で把握しやすく。
+
 import React, { useState, useEffect } from 'react';
 import { Memo } from '../types';
 

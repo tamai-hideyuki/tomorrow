@@ -1,3 +1,8 @@
+// Heading/Buttonの再利用、listboxのARIA、キーボード操作、DnD統合で公式に沿って整理します。
+// React公式のコンポーネント設計に寄せるなら、既存の atoms（Heading・Button・ListItem）を活用しつつ、
+// listboxパターンのアクセシビリティ、ロービングtabindexのキーボード操作、ドラッグ＆ドロップを統合した薄いコンテナにまとめるのが最も保守しやすい構成です。
+// Atomic Designの新版と重複していた責務は MemoItem 側へ寄せ、MemoList は「並べて操作を委譲する」だけにします。
+
 //問題: Atomic Designパターンの新版と重複
 //影響: コードの混乱、保守性の低下
 
