@@ -17,13 +17,41 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
+type Variant = 'default' | 'primary' | 'ghost' | 'destructive';
+type Size = 'sm' | 'md' | 'lg';
 
-const Button: React.FC<ButtonProps> = ({ children, className, ...rest }) => {
+type ButtonProps = {
+  variant?: Variant;
+  size?: Size;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+const variantClasses: Record<Variant, string> = {
+  default: 'border bg-white text-gray-900',
+  primary: 'border-transparent bg-blue-600 text-white hover:bg-blue-700',
+  ghost: 'border-transparent bg-transparent hover:bg-gray-100',
+  destructive: 'border-transparent bg-red-600 text-white hover:bg-red-700',
+};
+
+const sizeClasses: Record<Size, string> = {
+  sm: 'px-2 py-1 text-xs',
+  md: 'px-3 py-2 text-sm',
+  lg: 'px-4 py-2.5 text-base',
+};
+
+const Button: React.FC<ButtonProps> = ({
+  children,
+  className,
+  variant = 'default',
+  size = 'md',
+  ...rest
+}) => {
   const base =
     'inline-flex items-center justify-center rounded-md px-3 py-2 border text-sm transition-colors hover:opacity-90 focus:outline-none focus-visible:ring disabled:opacity-50 disabled:cursor-not-allowed';
   return (
-    <button className={twMerge(base, className)} {...rest}>
+    <button
+      className={twMerge(base, variantClasses[variant], sizeClasses[size], className)}
+      {...rest}
+    >
       {children}
     </button>
   );
