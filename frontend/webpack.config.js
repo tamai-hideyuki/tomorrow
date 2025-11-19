@@ -14,6 +14,13 @@ module.exports = {
     },
     hot: true,
     port: 3000,
+    proxy: [
+      {
+        context: ['/api'],
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+      },
+    ],
   },
   module: {
     rules: [

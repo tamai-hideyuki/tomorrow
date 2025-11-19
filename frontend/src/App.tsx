@@ -1,7 +1,3 @@
-// 選択メモの算出をuseMemo化し、ID中心のハンドラをuseCallbackで安定化します。
-// React公式の設計方針に寄せつつ便利にしたリファクタを行う
-// 派生値（selectedMemo / selectedIndex）をメモ化し、IDベースのハンドラを安定化、ショートカットと開発時のProfilerも追加
-
 import React from 'react';
 import { useMemos } from './useMemos';
 import MemoList from './components/MemoList';
@@ -13,7 +9,6 @@ const App: React.FC = () => {
     selectedMemoId,
     isEditMode,
     status,
-    selectDirectory,
     addMemo,
     selectMemo,
     updateMemo,
@@ -22,22 +17,20 @@ const App: React.FC = () => {
     toggleEditMode,
   } = useMemos();
 
-  //問題: selectedMemo と selectedIndex が毎レンダリングで再計算
-  //影響: 不要な再レンダリング
   const selectedMemo = memos.find((memo) => memo.id === selectedMemoId);
   const selectedIndex = memos.findIndex((memo) => memo.id === selectedMemoId);
 
   if (status === 'loading') {
-    return <div>読み込み中...</div>;
+    return <div className="flex-col flex-center h-screen w-full">読み込み中...</div>;
   }
 
-  if (status === 'needDirectory') {
+  if (status === 'error') {
     return (
       <div className="flex-col flex-center h-screen w-full">
-        <h2>フォルダを選択してください</h2>
-        <p>メモを保存するフォルダを選択します</p>
-        <button type="button" onClick={selectDirectory}>
-          フォルダを選択
+        <h2>エラーが発生しました</h2>
+        <p>バックエンドサーバーに接続できません</p>
+        <button type="button" onClick={() => window.location.reload()}>
+          再読み込み
         </button>
       </div>
     );
