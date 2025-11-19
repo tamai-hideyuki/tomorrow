@@ -1,12 +1,2 @@
 メモ：
-ビルドコマンド：npm run build
-型エラーチェック：tsc --noEmit
-
-- 構成の特徴
-- フロントエンドのみ: Reactベースのシングルページアプリケーション
-- データの保存: File System Access APIを使って、ユーザーのローカルディレクトリにMarkdownファイルとして直接保存
-- バックエンド不要: サーバーサイドの処理は一切なく、ブラウザのAPIを使ってファイルシステムに直接アクセス
-
-- パッケージ
-- import { toast } from "sonner";
-- import { useDebouncedCallback } from 'use-debounce';
+ビルドコマンド：npm dev で両方のサーバーが起動
